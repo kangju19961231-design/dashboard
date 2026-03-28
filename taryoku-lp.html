@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ä»åæ¬é¡ç· | ã³ãã¼ãã¬ã¼ãå®ç¸¾å¬é</title>
+
+  <!-- ââââââââââââââââââââââââââââââââââââââââââââââââââ
+       âï¸ Google Sheets è¨­å®
+       1. Google ã¹ãã¬ããã·ã¼ããä½æ
+       2. ä»¥ä¸ã®å½¢å¼ã§ãã¼ã¿ãå¥åï¼Aåï¼é ç®åãBåï¼å¤ï¼:
+          A1: è¨¼æ é       B1: 65144
+          A2: åå¼æé     B2: 2025/01ã2026/03
+          A3: åç         B3: 78.5
+          A4: æç         B4: 20394.26
+          A5: å¹³åæå©     B5: 8.2
+          A6: å¹³åé±å©     B6: 2.1
+          A7: å¹³åæ¥å©     B7: 0.3
+          A8: æçµæ´æ°     B8: 2026/03/26
+       3. ãã¡ã¤ã« â å±æ â ã¦ã§ãã«å¬é â CSVå½¢å¼ã§ã³ãã¼
+       4. $¸ã® SHEET_CSV_URL ã«è²¼ãä»ã
+       ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --card: #161616;
+      --card2: #1e1e1e;
+      --border: #2a2a2a;
+      --border2: #333;
+      --text: #e8e8e8;
+      --muted: #888;
+      --muted2: #aaa;
+      --gold: #d4a017;
+      --gold2: #f0c040;
+      --gold-bg: rgba(212,160,23,0.08);
+      --green: #00c853;
+      --green-bg: rgba(0,200,83,0.08);
+      --red: #ff3d57;
+      --red-bg: rgba(255,61,87,0.08);
+      --line: #06c755;
+      --glow: 0 0 40px rgba(212,160,23,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ââ NAV ââ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted2);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ââ HERO ââ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 60px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,160,23,0.05) 0%, transparent 70%),
+        linear-gradient(180deg, #0a0a0a 0%, #0d0b06 50%, #0a0a0a 100%);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212,160,23,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,160,23,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content {
+      position: relative;
+      text-align: center;
+      max-width: 900px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      border: 1px solid rgba(212,160,23,0.4);
+      padding: 6px 18px;
+      border-radius: 2px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+    .hero-name {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .hero-quote {
+      font-size: clamp(15px, 2.5vw, 22px);
+      color: var(--muted2);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .hero-quote strong {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .hero-emphasis {
+      font-size: clamp(18px, 3vw, 30px);
+      font-weight: 800;
+      color: var(--text);
+      border-left: 4px solid var(--gold);
+      padding-left: 20px;
+      text-align: left;
+      display: inline-block;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(var(--gold), transparent);
+    }
+
+    /* ââ STATS ââ */
+    .stats-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-right: 1px solid var(--border);
+    }
+    .stat-item {
+      padding: 32px 28px;
+      border-left: 1px solid var(--border);
+      position: relative;
+      transition: background 0.2s;
+    }
+    .stat-item:hover { background: var(--card); }
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-value.positive { color: var(--green); }
+    .stat-value.negative { color: var(--red); }
+    .stat-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* 3-column averages row */
+    .avg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-right: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ââ SECTION COMMON ââ */
+    section { padding: 80px 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ââ ABOUT ââ */
+    .about-section { background: var(--bg); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .about-avatar {
+      aspect-ratio: 1;
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      overflow: hidden;
+    }
+    .about-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-tag {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .about-name {
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+    .about-bio {
+      color: var(--muted2);
+      font-size: 15px;
+      line-height: 2;
+    }
+    .story-timeline {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 20px;
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      flex-shrink: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 5px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-item:not(:last-child) .timeline-dot::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: calc(100% + 28px - 12px);
+      background: linear-gradient(var(--border2), transparent);
+    }
+    .timeline-text { font-size: 15px; color: var(--muted2); line-height: 1.8; }
+    .timeline-text strong { color: var(--text); }
+
+    /* ââ VOICE (ãå®¢æ§ã®å£°) ââ */
+    .voice-section { background: var(--bg2); }
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .voice-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .voice-card:hover {
+      border-color: rgba(212,160,23,0.4);
+      transform: translateY(-2px);
+    }
+    .voice-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .voice-placeholder {
+      aspect-ratio: 4/3;
+      background: var(--card2);
+      border: 2px dashed var(--border2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .voice-placeholder-icon { font-size: 36px; opacity: 0.5; }
+
+    /* ââ BLOG ââ */
+    .blog-section { background: var(--bg); }
+    .blog-list { display: flex; flex-direction: column; gap: 1px; }
+    .blog-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .blog-item:hover {
+      background: var(--card2);
+      border-color: rgba(212,160,23,0.3);
+    }
+    .blog-date {
+      font-size: 12px;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+    }
+    .blog-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .blog-arrow { color: var(--muted); font-size: 18px; }
+
+    .blog-empty {
+      text-align: center;
+      padding: 60px;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px dashed var(--border2);
+    }
+
+    /* ââ CONTACT ââ */
+    .contact-section { background: var(--bg2); }
+    .contact-inner {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .contact-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .contact-sub {
+      color: var(--muted2);
+      font-size: 15px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--line);
+      color: #fff;
+      text-decoration: none;
+      padding: 18px 48px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .line-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .line-btn svg { width: 24px; height: 24px; fill: white; }
+
+    /* ââ FOOTER ââ */
+    footer {
+      background: #060606;
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ââ LOADING ââ */
+    .loading {
+      opacity: 0.4;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ââ RESPONSIVE ââ */
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { gap: 20px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .avg-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-avatar { max-width: 200px; }
+      .blog-item { grid-template-columns: 1fr; gap: 8px; }
+      .blog-arrow { display: none; }
+      .hero-emphasis { font-size: 18px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .avg-grid { grid-template-columns: 1fr; }
+      .stat-value { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- âââââââ NAVIGATION âââââââ -->
+<nav>
+  <div class="nav-logo">ä»åæ¬é¡ç·</div>
+  <div class="nav-links">
+    <a href="#stats">å®ç¸¾</a>
+    <a href="#about">ãã­ãã£ã¼ã«</a>
+    <a href="#voice">ãå®¢æ§ã®å£°</a>
+    <a href="#blog">ãã­ã°</a>
+    <a href="#contact">ãåãåãã</a>
+  </div>
+</nav>
+
+<!-- âââââââ HERO âââââââ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Copy Trade Evidence</div>
+    <div class="hero-name">ä»åæ¬é¡ç·</div>
+    <div class="hero-quote">
+      "ä»åã®åãåããã®ã<br>
+      æåã«è¿ã¥ã<strong>1çªã®æç­ã«ã¼ã</strong>"
+    </div>
+    <div class="hero-emphasis">
+      å¸«å ã®ã³ãã¼ãã«ã¼ãã§<br>è³ç£ãç¯ã
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- âââââââ STATS âââââââ -->
+<div class="stats-section" id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-label">ð° è¨¼æ é</div>
+      <div class="stat-value" id="stat-margin">$65,144</div>
+      <div class="stat-sub">USD / Initial Balance</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">ð åå¼æé</div>
+      <div class="stat-value" id="stat-trades"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-sub">Total Trades</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">ð¯ åç</div>
+      <div class="stat-value" id="stat-winrate"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-sub">Win Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">ðµ æçï¼åå¼ææ°æå«ãï¼</div>
+      <div class="stat-value positive" id="stat-pnl"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-sub">Total P&amp;L (USD)</div>
+    </div>
+  </div>
+  <div class="avg-grid">
+    <div class="stat-item">
+      <div class="stat-label">ð å¹³åæå©</div>
+      <div class="stat-value positive" id="stat-monthly"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-sub">Avg Monthly Return</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">ð å¹³åé±å©</div>
+      <div class="stat-value positive" id="stat-weekly"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-sub">Avg Weekly Return</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">ðï¸ å¹³åæ¥å©</div>
+      <div class="stat-value positive" id="stat-daily"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-sub">Avg Daily Return</div>
+    </div>
+  </div>
+  <div style="padding: 12px 28px; border-top: 1px solid var(--border); border-left: 1px solid var(--border);">
+    <span style="font-size:11px; color: var(--muted);">æçµæ´æ°: <span id="stat-updated" style="color:var(--muted2)">â</span></span>
+    <span style="font-size:11px; color: var(--muted); margin-left:16px;">â» ãã¼ã¿ã¯Googleã¹ãã¬ããã·ã¼ãããèªååæ </span>
+  </div>
+</div>
+
+<!-- âââââââ ABOUT âââââââ -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <div class="about-inner">
+      <div>
+        <div class="about-avatar">ð¤</div>
+      </div>
+      <div>
+        <div class="about-tag">Copy Trader / ä»åæ¬é¡ç³»æè³å®¶</div>
+        <div class="about-name">ä»åæ¬é¡ç·</div>
+        <div class="about-bio">
+          èªåã§ãã£ã¼ããåæããããã<strong>å§åçãªå®åãæã¦å¸«å ã®åãåãã</strong>ââ
+          ãããæéã§è³ç£ãå¢ããæ¹æ³ã ã¨ç¢ºä¿¡ãã¦ãã¾ãã
+        </div>
+
+        <div class="story-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>è£éãã¬ã¼ãã§æ«æ</strong><br>
+              ç¬å­¦ã§FXã«ææ¦ããããææã«æ¯éããããã¬ã¼ããç¹°ãè¿ãå¤§ããªæå¤±ãçµé¨ã
+              ãèªåã§ããããã¨ã®éçãæãç¥ãã
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>å¸«å ã¨ã®åºä¼ã</strong><br>
+              äººèãéãã¦ãå®å®ããæç¸¾ãåºãç¶ãããã­ãã¬ã¼ãã¼ã©aî¹/&¸àa¸à 8àgxàk¹g)ù`$¹æ¡8àj¹k§ùb¦øàj9. :,ªøàeøàgù¢)¹åixàjú(gy¤ øà¤¹cåøàdxà¢øà Ù]Ù]]Û\ÜÏH[Y[[KZ][H]Û\ÜÏH[Y[[KYÝÙ]]Û\ÜÏH[Y[[K]^ÝÛÏ¹aj9b¦ù¢¥z,áøà¤¹¬n¹¥«OÜÝÛÏ8à#9.å¹b¦øàk¹b¦øà¤¹`'øà¢¸à¢øàdøàj8àdøàgy§ 9çëxàêøàï8àâ8à#xàj9è®¹/èxà ÝÛÏ¹`'úaäN9.!ùa¡»ï"ú!ê¹mìz,áúaäL9.!ùa¡»ï":*"K9.!ùa¡»ï"OÜÝÛÏ¸à¤9n*ùc(8àk¸à¬øàå8àï8àâ8àë8àï8àâxàjù¢¥yaixàfxà¢øà Ù]Ù]]Û\ÜÏH[Y[[KZ][H]Û\ÜÏH[Y[[KYÝÙ]]Û\ÜÏH[Y[[K]^ÝÛÏ¹ãï¹g*;ï&¹aj8àâ8àë8àï8àâyak:e¢ù.+OÜÝÛÏ9n*ùc(8àk¸àâ8àë8àï8àâxà¤¹oè9k§øàjøà¬øàå8àï8àeøàj¸àc8à¢xà yaj8ài¸àk¹k§ùî/¸à¤¸àê¸à¨¸àêøà¯øà©8àè8àiùak:e¢øà 9d#8àf9h ú`aøàk¹.ìºe¤øàj9alxàjù¢$:emøàfxà¢øàdøàj8à¤¹æë¹£!øàeøài¸àa8ào¸àfxà Ù]Ù]Ù]Ù]Ù]Ù]ÜÙXÝ[ÛKKH8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ ÒPÑH8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ KOÙXÝ[ÛÛ\ÜÏHÚXÙK\ÙXÝ[ÛYHÚXÙH]Û\ÜÏHÛÛZ[\]Û\ÜÏHÙXÝ[Û[X[ÚXÙOÙ]Ý[OHÛÛÜ\K[]]YNÈX\Ú[XÝÛNÌÈÛ\Ú^NMÈ¸àåxàªxàëxàëøàï8àk¹¥®xà!xàbøà¢xàa8àgøàh8àa8àgùhì8à¤¸àe9í.y.âøàeøào¸àfxà Ü]Û\ÜÏHÚXÙKYÜYYHÚXÙQÜYKKH8à®xà«øàê¸àï8àìøà­øàéøààøàâ9å.ù`ãøà¤º/ïyb¨8àfxà¢ùh-9¢`KOKKH9/oøàa9¥®N[YÈÜÏHØÜY[ÚÝKÈ8à¯øà¬8à¤ÚXÙKXØ\8àjùaixà£8ài¸àcøàh8àexàaKO]Û\ÜÏHÚXÙKXØ\]Û\ÜÏHÚXÙK\XÙZÛ\]Û\ÜÏHÚXÙK\XÙZÛ\ZXÛÛ¼'äîÙ]]¸à®xà«øàê¸àï8àìøà­øàéøààøàâ8à¤¸àdøàdøàjº/ïyb¨Ù]Ù]Ù]]Û\ÜÏHÚXÙKXØ\]Û\ÜÏHÚXÙK\XÙZÛ\]Û\ÜÏHÚXÙK\XÙZÛ\ZXÛÛ¼'äîÙ]]¸à®xà«øàê¸àï8àìøà­øàéøààøàâ8à¤¸àdøàdøàjú/ïyb¨Ù]Ù]Ù]]Û\ÜÏHÚXÙKXØ\]Û\ÜÏHÚXÙK\XÙZÛ\]Û\ÜÏHÚXÙK\XÙZÛ\ZXÛÛ¼'äîÙ]]¸à®xà«øàê¸àï8àìøà­øàéøààøàâ8à¤¸àdøàdøàjú/ïyb¨Ù]Ù]Ù]Ù]Ù]ÜÙXÝ[ÛKKH8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ ÑÈ8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ KOÙXÝ[ÛÛ\ÜÏHÙË\ÙXÝ[ÛYHÙÈ]Û\ÜÏHÛÛZ[\]Û\ÜÏHÙXÝ[Û[X[ÙÏÙ]]Û\ÜÏHÙË[\ÝYHÙÓ\ÝKKH8àå¸àëxà¬:*&9.¢øà¤º/ïyb¨8àfxà¢ùh-9¢`KOKKH9/oøàa9¥®NHÛ\ÜÏHÙËZ][HYHº*&9.¢øàkT]Û\ÜÏHÙËY]HÌËÌÙ]]Û\ÜÏHÙË]]Hº*&9.¢øà¯øà©8àâ8àêÏÙ]]Û\ÜÏHÙËX\ÝÈ¸¡¤Ù]ØOKO]Û\ÜÏHÙËY[\H<'äçH8àå¸àëx+¢¢cê/
+Kr«.7B#¯þ_£O
+7g
+¨þi.i»Nik8~8n8N8Þ8î88 ¢ÂöFcà¢ÂöFcà¢ÂöFcà£Â÷6V7Föãà £ÂÒÒ)H)H)H)H)H)H)H4ôåD5B)H)H)H)H)H)H)HÒÓà£Ç6V7Föâ6Æ73Ò&6öçF7B×6V7Föâ"CÒ&6öçF7B#à¢ÆFb6Æ73Ò&6öçFæW"#à¢ÆFb6Æ73Ò'6V7FöâÖÆ&VÂ#ä6öçF7CÂöFcà¢ÆFb6Æ73Ò&6öçF7BÖææW"#à¢ÆFb6Æ73Ò&6öçF7B×FFÆR#îXZÎ[ÈôÄä^8ÂöFcà¢ÆFb6Æ73Ò&6öçF7B×7V"#à¢8N:®YXþ8;¾8®YXþ8NY8(þ8¾8ôÄä^XZÎ[Èþ8*.8*¾8*n8;>888î8~8#Æ'#à¢8+>89N8;Î888:Î8;Î888¾Y>8Î8.8(¾ik8(.8®k	~»Þ8¾88n8î8 ¢ÂöFcà¢Æ&VcÒ&GG3¢òöÆâæVRõÆv"F&vWCÒ%ö&Ææ²"6Æ73Ò&ÆæRÖ'Fâ#à¢Ç7frfWt&÷Ò##B#B"ÖÆç3Ò&GG¢ò÷wwrçs2æ÷&ró#÷7fr#à¢ÇFCÒ$Óã3cRãc62ã3Cãc2ã#Rãc2ãc3ã3CRÒã#ãc2Òãc2ãc4rãccã#VãsSV2ã3Cãc2ã#2ãc2ãc2ã3CBÒã#ãc#Òãc2ãc#Ó"ã3f2Òã3CRÒãc#rÒã#RÒãc#rÒãc#cã3Òã3CRã#"Òãc2ãc#rÒãc6"ã3f2ã3Cãc2ã#Rãc2ãc2ã3CÒã#ãc2Òãc2ãc4rãccã#VãsSW¦ÒÓ2ãSR2ãf3ã#rÒãsBãSÒãC3"ãSbÒãcBã#Òã32ã3Òãã3Òã#Òã3ÒãÒãSÒã#VÂÓ"ãCC2Ó2ã3wc"ãF3ã3CBÒã#sãc#Òãc3ãc#Òã3CbÒãc#bÒã#RÒãc#bÒãc#cã3Òã#rãs2ÒãSãC2ÒãSRãbÒã#2ã3bÒã32ãBÒã32ãRã3sRãBãCRã#SFÃ"ãCc"2ã35cã3Òã3CRã#"Òãc2ãc2Òãc2ã3CRãc2ã#Rãc2ãc7cBãss¦ÒÓRãsC3ã3CBÒã#"ãc#Òãc3ãc#Òã3CRÒãc#rÒã#RÒãc#rÒãc#cã3Òã3CRã#"Òãc2ãc#rÒãc2ã3Cãc3ã#Rãc3ãc7cBãss¦ÒÓ"ãCcbãc#Bãv2Òã3CRÒãc#rÒã#RÒãc#rÒãc#cã3Òã3CRã#"Òãc2ãc#rÒãc2ã3Cãc3ã#Rãc3ãc7cBãCãsSf2ã3Cãc#ã#2ãc#ãc2ã3CBÒã#ãc#Òãc#ãc#Ó#Bã3D3#BBãC2ãcRãSs""ãSs%3BãC2ã3F3BãBã#rãC"ã3Rãcã3ã"ã#2ã#SãSãSã"ã3ãsãscbã3ãÂÒãcBã&2ÒãCRã3Òã#BãbãCãcCRã#ÒãS3bãbÓBãsãC3bÓbãsT3#2ãsbBã32#B"ãCS#Bã3B"óà¢Â÷7fsà¢XZÎ[ÈôÄä^8).ûÞXª88(°¢Âöà¢ÆFb7GÆSÒ&Ö&vâ×F÷£#²föçB×6¦S£'²6öÆ÷#§f"ÒÖ×WFVB²#à¢(²xJyn8®Xº~©8þKX~Î8N8î8¾8)0¢ÂöFcà¢ÂöFcà¢ÂöFcà£Â÷6V7Föãà £ÂÒÒ)H)H)H)H)H)H)HdôõDU")H)H)H)H)H)H)HÒÓà£Æfö÷FW#à¢Çì*##bK¹nX©¾iÊÎyKrÂÆÂ&vG2&W6W'fVBãÂ÷à£Âöfö÷FW#à £ÂÒÒ)H)H)H)H)H)H)HtôôtÄR4TUE2DDdUD4)H)H)H)H)H)H)HÒÓà£Ç67&Cà¢ò¢)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y ¢)©ûò8>8>8´vöövÆR6VWG>8ä55bU$Î8).+Î8(®K¹88n8þ88^8@ ¢h¾c ¢âvöövÆR8+89~8:Î88>888+~8;Î888).h¾8ð¢"â89^8*8*N8:²(i"X[iÈ(i"8*n8*~89n8¾XZÎh°¢2â8Î8+~8;Î88XZKÙ>8Þ8Î8*¾8;>89îXË®X~8(®8îX
+NûÈæ77nûÈ8Þ8).h©à¢Bâ8ÎXZÎh¾8Þ89Î8+þ8;>8).h«Î8~8eU$Î8).8+>89N8;À¢RâK¾8å4TUEô55eõU$Î8¾+Î8(®K¹88(° ¢8+89~8:Î88>888+~8;Î888î88~8;Î8+þ[Ú.[ÈþûÈX~ûÉ®^yºî8.X~ûÉ®X
+NûÈ ¢¢Îhºy#¢cSC@¢#¢Xùn[É^iÉþi2##¢##Ró8	Ã##bó0¢3¢X¹Þxèr#3¢sãP¢C¢iÞy¸¢#C¢#3Bã#`¢S¢[>YØ~iÈX#S¢ã ¢c¢[>YØ~X#c¢"ã¢s¢[>YØ~iz^X#s¢ã0¢¢iÈ{X.i»Nik#¢##bó2ó#`¢)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y¢ð ¦6öç7B4TUEô55eõU$ÂÒvGG3¢òöFö72ævöövÆRæ6öÒ÷7&VG6VWG2öBöRó%5Óe¦å3%võ¤U$63TæÆfc5öóFµ5fGFcUöåuäöãwEµVF$¥õõÆçÄtã37u4d¦c2÷V#ö÷WGWCÖ77bs° ¢òò88~89^8*8:¾88X
+NûÈ8+89~8:Î88>888+~8;Î888ÎiÊ®ÞZé®8îZNY8¾KÛþyJûÈ¦6öç7BDTdTÅEõ5DE2Ò°¢~Îhºys¢scRÃCBrÀ¢~Xùn[É^iÉþi2s¢~(	BrÀ¢~X¹Þxèrs¢~(	BrÀ¢~iÞy¸¢s¢~(	BrÀ¢~[>YØ~iÈXs¢~(	BrÀ¢~[>YØ~Xs¢~(	BrÀ¢~[>YØ~iz^Xs¢~(	BrÀ¢~iÈ{X.i»Niks¢~(	Bp§Ó° ¢òòi[X
+N89^8*8;Î89î88>88¦gVæ7Föâf×DçVÒfÂ°¢6öç7BâÒ'6TfÆöBfÂ°¢b4æââ&WGW&âfÃ°¢&WGW&ââçFôÆö6ÆU7G&ærvVâÕU2rÂ²Öæ×VÔg&7FöäFvG3¢ÂÖ×VÔg&7FöäFvG3¢"Ò°§Ð ¢òò{[8).yK¾Ú.8¾XøÞi ¦gVæ7FöâÇ7FG2FF°¢6öç7BvWBÒ¶WÓâFF¶¶WÒÓÒVæFVfæVBòFF¶¶WÒ¢DTdTÅEõ5DE5¶¶WÒÇÂ~(	Br° ¢òòÎhºy¢6öç7BÖ&vâÒvWB~Îhºyr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FBÖÖ&vârçFWD6öçFVçBÒrBr²f×DçVÒÖ&vâ° ¢òòXùn[É^iÉþi0¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×G&FW2rçFWD6öçFVçBÒvWB~Xùn[É^iÉþi2rÇÂ~(	Bs° ¢òòX¹Þxèp¢6öç7Bw"ÒvWB~X¹Þxèrr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×vç&FRrçFWD6öçFVçBÒf×DçVÒw"²rRs° ¢òòiÞy¸ ¢6öç7BæÂÒ'6TfÆöBvWB~iÞy¸¢r°¢6öç7BæÄVÂÒFö7VÖVçBævWDVÆVÖVçD'Bw7FB×æÂr°¢b4æâæÂ°¢æÄVÂçFWD6öçFVçBÒæÂãÒòr²Br¢rÒBr²f×DçVÒÖFæ'2æÂ°¢æÄVÂæ6Æ74æÖRÒw7FB×fÇVRr²æÂãÒòw÷6FfRr¢væVvFfRr°¢ÒVÇ6R°¢æÄVÂçFWD6öçFVçBÒvWB~iÞy¸¢r°¢Ð ¢òò[>YØ~XY¹î8( ¢6öç7BÖöçFÇÒvWB~[>YØ~iÈXr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FBÖÖöçFÇrçFWD6öçFVçBÒr²r²f×DçVÒÖöçFÇ²rRs° ¢6öç7BvVV¶ÇÒvWB~[>YØ~Xr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×vVV¶ÇrçFWD6öçFVçBÒr²r²f×DçVÒvVV¶Ç²rRs° ¢6öç7BFÇÒvWB~[>YØ~iz^Xr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FBÖFÇrçFWD6öçFVçBÒr²r²f×DçVÒFÇ²rRs° ¢òòiÈ{X.i»Nik ¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×WFFVBrçFWD6öçFVçBÒvWB~iÈ{X.i»Nikr°§Ð ¢òò55b8).z>ié8~8n8*Þ8;Ã®X
+N8î8*®89n8+8*~8*þ888¾ZHhù°¦gVæ7Föâ'6T55bFWB°¢6öç7BÆæW2ÒFWBçG&Òç7ÆBuÆâr°¢6öç7B&W7VÇBÒ·Ó°¢ÆæW2æf÷$V6ÆæRÓâ°¢6öç7B'G2ÒÆæRç7ÆBrÂr°¢b'G2æÆVæwFãÒ"°¢6öç7B¶WÒ'G5³ÒçG&Òç&WÆ6Rõâ'Â"BörÂrr°¢6öç7BfÂÒ'G2ç6Æ6Ræ¦öârÂrçG&Òç&WÆ6Rõâ'Â"BörÂrr°¢b¶W&W7VÇE¶¶WÒÒfÃ°¢Ð¢Ò°¢&WGW&â&W7VÇC°§Ð ¢òòvöövÆR6VWG28¾8(88~8;Î8+þXùn[ép¦7æ2gVæ7FöâÆöE6VWDFF°¢b4TUEô55eõU$Â°¢òòU$Î8ÎiÊ®ÞZé®8îZNY8þ88~89^8*8:¾88X
+N8).KÛþyJ¢Ç7FG2DTdTÅEõ5DE2°¢&WGW&ã°¢Ð ¢G'°¢6öç7B&W7ÒvBfWF64TUEô55eõU$Â°¢b&W7æö²F&÷ræWrW'&÷"tEEr²&W7ç7FGW2°¢6öç7BFWBÒvB&W7çFWB°¢6öç7BFFÒ'6T55bFWB°¢Ç7FG2FF°¢Ò6F6W'"°¢6öç6öÆRçv&â~8+89~8:Î88>888+~8;Î888îªÞ8þëÎ8þ8¾ZKiY~8~8î8~8ó¢rÂW'"°¢Ç7FG2DTdTÅEõ5DE2°¢Ð§Ð ¢òò89®8;Î8+8:Þ8;Î88i.8¾88~8;Î8+ùcå¹o¥ÂØYÚY]]J
+NÂÜØÜ\ØÙOÚ[
