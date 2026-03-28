@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ä»åæ¬é¡ç· | ã³ãã¼ãã¬ã¼ãå®ç¸¾å¬é</title>
+  <title>他力本願男 | コピートレード実績公開</title>
 
-  <!-- ââââââââââââââââââââââââââââââââââââââââââââââââââ
-       âï¸ Google Sheets è¨­å®
-       1. Google ã¹ãã¬ããã·ã¼ããä½æ
-       2. ä»¥ä¸ã®å½¢å¼ã§ãã¼ã¿ãå¥åï¼Aåï¼é ç®åãBåï¼å¤ï¼:
-          A1: è¨¼æ é       B1: 65144
-          A2: åå¼æé     B2: 2025/01ã2026/03
-          A3: åç         B3: 78.5
-          A4: æç         B4: 20394.26
-          A5: å¹³åæå©     B5: 8.2
-          A6: å¹³åé±å©     B6: 2.1
-          A7: å¹³åæ¥å©     B7: 0.3
-          A8: æçµæ´æ°     B8: 2026/03/26
-       3. ãã¡ã¤ã« â å±æ â ã¦ã§ãã«å¬é â CSVå½¢å¼ã§ã³ãã¼
-       4. $¸ã® SHEET_CSV_URL ã«è²¼ãä»ã
-       ââââââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <!-- ══════════════════════════════════════════════════
+       ⚙️ Google Sheets 設定
+       1. Google スプレッドシートを作成
+       2. 以下の形式でデータを入力（A列：項目名、B列：値）:
+          A1: 証拠金       B1: 65144
+          A2: 取引期間     B2: 2025/01〜2026/03
+          A3: 勝率         B3: 78.5
+          A4: 損益         B4: 20394.26
+          A5: 平均月利     B5: 8.2
+          A6: 平均週利     B6: 2.1
+          A7: 平均日利     B7: 0.3
+          A8: 最終更新     B8: 2026/03/26
+       3. ファイル → 共有 → ウェブに公開 → CSV形式でコピー
+       4. 下の SHEET_CSV_URL に貼り付け
+       ══════════════════════════════════════════════════ -->
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -55,7 +55,7 @@
       overflow-x: hidden;
     }
 
-    /* ââ NAV ââ */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -85,7 +85,7 @@
     }
     .nav-links a:hover { color: var(--gold); }
 
-    /* ââ HERO ââ */
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -150,6 +150,9 @@
       border-left: 4px solid var(--gold);
       padding-left: 20px;
       text-align: left;
+    }
+ padding-left: 20px;
+      text-align: left;
       display: inline-block;
       margin-top: 20px;
       line-height: 1.5;
@@ -178,7 +181,7 @@
       background: linear-gradient(var(--gold), transparent);
     }
 
-    /* ââ STATS ââ */
+    /* ── STATS ── */
     .stats-section {
       background: var(--bg2);
       border-top: 1px solid var(--border);
@@ -228,7 +231,7 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ââ SECTION COMMON ââ */
+    /* ── SECTION COMMON ── */
     section { padding: 80px 0; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     .section-label {
@@ -249,7 +252,7 @@
       background: var(--gold);
     }
 
-    /* ââ ABOUT ââ */
+    /* ── ABOUT ── */
     .about-section { background: var(--bg); }
     .about-inner {
       display: grid;
@@ -327,7 +330,7 @@
     .timeline-text { font-size: 15px; color: var(--muted2); line-height: 1.8; }
     .timeline-text strong { color: var(--text); }
 
-    /* ââ VOICE (ãå®¢æ§ã®å£°) ââ */
+    /* ── VOICE (お客様の声) ── */
     .voice-section { background: var(--bg2); }
     .voice-grid {
       display: grid;
@@ -365,7 +368,7 @@
     }
     .voice-placeholder-icon { font-size: 36px; opacity: 0.5; }
 
-    /* ââ BLOG ââ */
+    /* ── BLOG ── */
     .blog-section { background: var(--bg); }
     .blog-list { display: flex; flex-direction: column; gap: 1px; }
     .blog-item {
@@ -404,7 +407,7 @@
       border: 1px dashed var(--border2);
     }
 
-    /* ââ CONTACT ââ */
+    /* ── CONTACT ── */
     .contact-section { background: var(--bg2); }
     .contact-inner {
       text-align: center;
@@ -439,7 +442,7 @@
     .line-btn:hover { opacity: 0.9; transform: translateY(-2px); }
     .line-btn svg { width: 24px; height: 24px; fill: white; }
 
-    /* ââ FOOTER ââ */
+    /* ── FOOTER ── */
     footer {
       background: #060606;
       border-top: 1px solid var(--border);
@@ -449,14 +452,14 @@
       color: var(--muted);
     }
 
-    /* ââ LOADING ââ */
+    /* ── LOADING ── */
     .loading {
       opacity: 0.4;
       font-size: 12px;
       color: var(--muted);
     }
 
-    /* ââ RESPONSIVE ââ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 0 16px; }
       .nav-links { gap: 20px; }
@@ -477,31 +480,31 @@
 </head>
 <body>
 
-<!-- âââââââ NAVIGATION âââââââ -->
+<!-- ─────── NAVIGATION ─────── -->
 <nav>
-  <div class="nav-logo">ä»åæ¬é¡ç·</div>
+  <div class="nav-logo">他力本願男</div>
   <div class="nav-links">
-    <a href="#stats">å®ç¸¾</a>
-    <a href="#about">ãã­ãã£ã¼ã«</a>
-    <a href="#voice">ãå®¢æ§ã®å£°</a>
-    <a href="#blog">ãã­ã°</a>
-    <a href="#contact">ãåãåãã</a>
+    <a href="#stats">実績</a>
+    <a href="#about">プロフィール</a>
+    <a href="#voice">お客様の声</a>
+    <a href="#blog">ブログ</a>
+    <a href="#contact">お問い合わせ</a>
   </div>
 </nav>
 
-<!-- âââââââ HERO âââââââ -->
+<!-- ─────── HERO ─────── -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-tag">Copy Trade Evidence</div>
-    <div class="hero-name">ä»åæ¬é¡ç·</div>
+    <div class="hero-name">他力本願男</div>
     <div class="hero-quote">
-      "ä»åã®åãåããã®ã<br>
-      æåã«è¿ã¥ã<strong>1çªã®æç­ã«ã¼ã</strong>"
+      "他力の力を借りるのが<br>
+      成功に近づく<strong>1番の最短ルート</strong>"
     </div>
     <div class="hero-emphasis">
-      å¸«å ã®ã³ãã¼ãã«ã¼ãã§<br>è³ç£ãç¯ã
+      師匠のコピートレードで<br>資産を築か
     </div>
   </div>
   <div class="hero-scroll">
@@ -510,90 +513,307 @@
   </div>
 </section>
 
-<!-- âââââââ STATS âââââââ -->
+<!-- ─────── STATS ─────── -->
 <div class="stats-section" id="stats">
   <div class="stats-grid">
     <div class="stat-item">
-      <div class="stat-label">ð° è¨¼æ é</div>
+      <div class="stat-label">💰 証拠金</div>
       <div class="stat-value" id="stat-margin">$65,144</div>
       <div class="stat-sub">USD / Initial Balance</div>
     </div>
     <div class="stat-item">
-      <div class="stat-label">ð åå¼æé</div>
-      <div class="stat-value" id="stat-trades"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-label">📅 取引期間</div>
+      <div class="stat-value" id="stat-trades"><span class="loading">読込中...</span></div>
       <div class="stat-sub">Total Trades</div>
     </div>
     <div class="stat-item">
-      <div class="stat-label">ð¯ åç</div>
-      <div class="stat-value" id="stat-winrate"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-label">🎯 勝率</div>
+      <div class="stat-value" id="stat-winrate"><span class="loading">読込中...</span></div>
       <div class="stat-sub">Win Rate</div>
     </div>
     <div class="stat-item">
-      <div class="stat-label">ðµ æçï¼åå¼ææ°æå«ãï¼</div>
-      <div class="stat-value positive" id="stat-pnl"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-label">💵 損益（取引手数料含む）</div>
+      <div class="stat-value positive" id="stat-pnl"><span class="loading">読込中...</span></div>
       <div class="stat-sub">Total P&amp;L (USD)</div>
     </div>
   </div>
   <div class="avg-grid">
     <div class="stat-item">
-      <div class="stat-label">ð å¹³åæå©</div>
-      <div class="stat-value positive" id="stat-monthly"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-label">📅 平均月利</div>
+      <div class="stat-value positive" id="stat-monthly"><span class="loading">読込中...</span></div>
       <div class="stat-sub">Avg Monthly Return</div>
     </div>
     <div class="stat-item">
-      <div class="stat-label">ð å¹³åé±å©</div>
-      <div class="stat-value positive" id="stat-weekly"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-label">📆 平均週利</div>
+      <div class="stat-value positive" id="stat-weekly"><span class="loading">読込中...</span></div>
       <div class="stat-sub">Avg Weekly Return</div>
     </div>
     <div class="stat-item">
-      <div class="stat-label">ðï¸ å¹³åæ¥å©</div>
-      <div class="stat-value positive" id="stat-daily"><span class="loading">èª­è¾¼ä¸­...</span></div>
+      <div class="stat-label">🗓️ 平均日利</div>
+      <div class="stat-value positive" id="stat-daily"><span class="loading">読込中...</span></div>
       <div class="stat-sub">Avg Daily Return</div>
     </div>
   </div>
   <div style="padding: 12px 28px; border-top: 1px solid var(--border); border-left: 1px solid var(--border);">
-    <span style="font-size:11px; color: var(--muted);">æçµæ´æ°: <span id="stat-updated" style="color:var(--muted2)">â</span></span>
-    <span style="font-size:11px; color: var(--muted); margin-left:16px;">â» ãã¼ã¿ã¯Googleã¹ãã¬ããã·ã¼ãããèªååæ </span>
+    <span style="font-size:11px; color: var(--muted);">最終更新: <span id="stat-updated" style="color:var(--muted2)">—</span></span>
+    <span style="font-size:11px; color: var(--muted); margin-left:16px;">※ データはGoogleスプレッドシートから自動反映</span>
   </div>
 </div>
 
-<!-- âââââââ ABOUT âââââââ -->
+<!-- ─────── ABOUT ─────── -->
 <section class="about-section" id="about">
   <div class="container">
     <div class="section-label">About</div>
     <div class="about-inner">
       <div>
-        <div class="about-avatar">ð¤</div>
+        <div class="about-avatar">🤝</div>
       </div>
       <div>
-        <div class="about-tag">Copy Trader / ä»åæ¬é¡ç³»æè³å®¶</div>
-        <div class="about-name">ä»åæ¬é¡ç·</div>
+        <div class="about-tag">Copy Trader / 他力本願系投資家</div>
+        <div class="about-name">他力本願男</div>
         <div class="about-bio">
-          èªåã§ãã£ã¼ããåæããããã<strong>å§åçãªå®åãæã¦å¸«å ã®åãåãã</strong>ââ
-          ãããæéã§è³ç£ãå¢ããæ¹æ³ã ã¨ç¢ºä¿¡ãã¦ãã¾ãã
+          自分でチャートを分析するより、<strong>圧倒的な実力を持つ師匠の力を借りる</strong>——
+          それが最速で資産を増やす方法だと確信しています。
         </div>
 
         <div class="story-timeline">
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-text">
-              <strong>è£éãã¬ã¼ãã§æ«æ</strong><br>
-              ç¬å­¦ã§FXã«ææ¦ããããææã«æ¯éããããã¬ã¼ããç¹°ãè¿ãå¤§ããªæå¤±ãçµé¨ã
-              ãèªåã§ããããã¨ã®éçãæãç¥ãã
+              <strong>裁量トレードで挫折</strong><br>
+              独学でFXに挑戦するも、感情に支配されたトレードを繰り返し大きな損失を経験。
+              「自分でやる」ことの限界を思い知る。
             </div>
           </div>
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-text">
-              <strong>å¸«å ã¨ã®åºä¼ã</strong><br>
-              äººèãéãã¦ãå®å®ããæç¸¾ãåºãç¶ãããã­ãã¬ã¼ãã¼ã©aî¹/&¸àa¸à 8àgxàk¹g)ù`$¹æ¡8àj¹k§ùb¦øàj9. :,ªøàeøàgù¢)¹åixàjú(gy¤ øà¤¹cåøàdxà¢øà Ù]Ù]]Û\ÜÏH[Y[[KZ][H]Û\ÜÏH[Y[[KYÝÙ]]Û\ÜÏH[Y[[K]^ÝÛÏ¹aj9b¦ù¢¥z,áøà¤¹¬n¹¥«OÜÝÛÏ8à#9.å¹b¦øàk¹b¦øà¤¹`'øà¢¸à¢øàdøàj8àdøàgy§ 9çëxàêøàï8àâ8à#xàj9è®¹/èxà ÝÛÏ¹`'úaäN9.!ùa¡»ï"ú!ê¹mìz,áúaäL9.!ùa¡»ï":*"K9.!ùa¡»ï"OÜÝÛÏ¸à¤9n*ùc(8àk¸à¬øàå8àï8àâ8àë8àï8àâxàjù¢¥yaixàfxà¢øà Ù]Ù]]Û\ÜÏH[Y[[KZ][H]Û\ÜÏH[Y[[KYÝÙ]]Û\ÜÏH[Y[[K]^ÝÛÏ¹ãï¹g*;ï&¹aj8àâ8àë8àï8àâyak:e¢ù.+OÜÝÛÏ9n*ùc(8àk¸àâ8àë8àï8àâxà¤¹oè9k§øàjøà¬øàå8àï8àeøàj¸àc8à¢xà yaj8ài¸àk¹k§ùî/¸à¤¸àê¸à¨¸àêøà¯øà©8àè8àiùak:e¢øà 9d#8àf9h ú`aøàk¹.ìºe¤øàj9alxàjù¢$:emøàfxà¢øàdøàj8à¤¹æë¹£!øàeøài¸àa8ào¸àfxà Ù]Ù]Ù]Ù]Ù]Ù]ÜÙXÝ[ÛKKH8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ ÒPÑH8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ KOÙXÝ[ÛÛ\ÜÏHÚXÙK\ÙXÝ[ÛYHÚXÙH]Û\ÜÏHÛÛZ[\]Û\ÜÏHÙXÝ[Û[X[ÚXÙOÙ]Ý[OHÛÛÜ\K[]]YNÈX\Ú[XÝÛNÌÈÛ\Ú^NMÈ¸àåxàªxàëxàëøàï8àk¹¥®xà!xàbøà¢xàa8àgøàh8àa8àgùhì8à¤¸àe9í.y.âøàeøào¸àfxà Ü]Û\ÜÏHÚXÙKYÜYYHÚXÙQÜYKKH8à®xà«øàê¸àï8àìøà­øàéøààøàâ9å.ù`ãøà¤º/ïyb¨8àfxà¢ùh-9¢`KOKKH9/oøàa9¥®N[YÈÜÏHØÜY[ÚÝKÈ8à¯øà¬8à¤ÚXÙKXØ\8àjùaixà£8ài¸àcøàh8àexàaKO]Û\ÜÏHÚXÙKXØ\]Û\ÜÏHÚXÙK\XÙZÛ\]Û\ÜÏHÚXÙK\XÙZÛ\ZXÛÛ¼'äîÙ]]¸à®xà«øàê¸àï8àìøà­øàéøààøàâ8à¤¸àdøàdøàjº/ïyb¨Ù]Ù]Ù]]Û\ÜÏHÚXÙKXØ\]Û\ÜÏHÚXÙK\XÙZÛ\]Û\ÜÏHÚXÙK\XÙZÛ\ZXÛÛ¼'äîÙ]]¸à®xà«øàê¸àï8àìøà­øàéøààøàâ8à¤¸àdøàdøàjú/ïyb¨Ù]Ù]Ù]]Û\ÜÏHÚXÙKXØ\]Û\ÜÏHÚXÙK\XÙZÛ\]Û\ÜÏHÚXÙK\XÙZÛ\ZXÛÛ¼'äîÙ]]¸à®xà«øàê¸àï8àìøà­øàéøààøàâ8à¤¸àdøàdøàjú/ïyb¨Ù]Ù]Ù]Ù]Ù]ÜÙXÝ[ÛKKH8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ ÑÈ8¥ 8¥ 8¥ 8¥ 8¥ 8¥ 8¥ KOÙXÝ[ÛÛ\ÜÏHÙË\ÙXÝ[ÛYHÙÈ]Û\ÜÏHÛÛZ[\]Û\ÜÏHÙXÝ[Û[X[ÙÏÙ]]Û\ÜÏHÙË[\ÝYHÙÓ\ÝKKH8àå¸àëxà¬:*&9.¢øà¤º/ïyb¨8àfxà¢ùh-9¢`KOKKH9/oøàa9¥®NHÛ\ÜÏHÙËZ][HYHº*&9.¢øàkT]Û\ÜÏHÙËY]HÌËÌÙ]]Û\ÜÏHÙË]]Hº*&9.¢øà¯øà©8àâ8àêÏÙ]]Û\ÜÏHÙËX\ÝÈ¸¡¤Ù]ØOKO]Û\ÜÏHÙËY[\H<'äçH8àå¸àëx+¢¢cê/
-Kr«.7B#¯þ_£O
-7g
-¨þi.i»Nik8~8n8N8Þ8î88 ¢ÂöFcà¢ÂöFcà¢ÂöFcà£Â÷6V7Föãà £ÂÒÒ)H)H)H)H)H)H)H4ôåD5B)H)H)H)H)H)H)HÒÓà£Ç6V7Föâ6Æ73Ò&6öçF7B×6V7Föâ"CÒ&6öçF7B#à¢ÆFb6Æ73Ò&6öçFæW"#à¢ÆFb6Æ73Ò'6V7FöâÖÆ&VÂ#ä6öçF7CÂöFcà¢ÆFb6Æ73Ò&6öçF7BÖææW"#à¢ÆFb6Æ73Ò&6öçF7B×FFÆR#îXZÎ[ÈôÄä^8ÂöFcà¢ÆFb6Æ73Ò&6öçF7B×7V"#à¢8N:®YXþ8;¾8®YXþ8NY8(þ8¾8ôÄä^XZÎ[Èþ8*.8*¾8*n8;>888î8~8#Æ'#à¢8+>89N8;Î888:Î8;Î888¾Y>8Î8.8(¾ik8(.8®k	~»Þ8¾88n8î8 ¢ÂöFcà¢Æ&VcÒ&GG3¢òöÆâæVRõÆv"F&vWCÒ%ö&Ææ²"6Æ73Ò&ÆæRÖ'Fâ#à¢Ç7frfWt&÷Ò##B#B"ÖÆç3Ò&GG¢ò÷wwrçs2æ÷&ró#÷7fr#à¢ÇFCÒ$Óã3cRãc62ã3Cãc2ã#Rãc2ãc3ã3CRÒã#ãc2Òãc2ãc4rãccã#VãsSV2ã3Cãc2ã#2ãc2ãc2ã3CBÒã#ãc#Òãc2ãc#Ó"ã3f2Òã3CRÒãc#rÒã#RÒãc#rÒãc#cã3Òã3CRã#"Òãc2ãc#rÒãc6"ã3f2ã3Cãc2ã#Rãc2ãc2ã3CÒã#ãc2Òãc2ãc4rãccã#VãsSW¦ÒÓ2ãSR2ãf3ã#rÒãsBãSÒãC3"ãSbÒãcBã#Òã32ã3Òãã3Òã#Òã3ÒãÒãSÒã#VÂÓ"ãCC2Ó2ã3wc"ãF3ã3CBÒã#sãc#Òãc3ãc#Òã3CbÒãc#bÒã#RÒãc#bÒãc#cã3Òã#rãs2ÒãSãC2ÒãSRãbÒã#2ã3bÒã32ãBÒã32ãRã3sRãBãCRã#SFÃ"ãCc"2ã35cã3Òã3CRã#"Òãc2ãc2Òãc2ã3CRãc2ã#Rãc2ãc7cBãss¦ÒÓRãsC3ã3CBÒã#"ãc#Òãc3ãc#Òã3CRÒãc#rÒã#RÒãc#rÒãc#cã3Òã3CRã#"Òãc2ãc#rÒãc2ã3Cãc3ã#Rãc3ãc7cBãss¦ÒÓ"ãCcbãc#Bãv2Òã3CRÒãc#rÒã#RÒãc#rÒãc#cã3Òã3CRã#"Òãc2ãc#rÒãc2ã3Cãc3ã#Rãc3ãc7cBãCãsSf2ã3Cãc#ã#2ãc#ãc2ã3CBÒã#ãc#Òãc#ãc#Ó#Bã3D3#BBãC2ãcRãSs""ãSs%3BãC2ã3F3BãBã#rãC"ã3Rãcã3ã"ã#2ã#SãSãSã"ã3ãsãscbã3ãÂÒãcBã&2ÒãCRã3Òã#BãbãCãcCRã#ÒãS3bãbÓBãsãC3bÓbãsT3#2ãsbBã32#B"ãCS#Bã3B"óà¢Â÷7fsà¢XZÎ[ÈôÄä^8).ûÞXª88(°¢Âöà¢ÆFb7GÆSÒ&Ö&vâ×F÷£#²föçB×6¦S£'²6öÆ÷#§f"ÒÖ×WFVB²#à¢(²xJyn8®Xº~©8þKX~Î8N8î8¾8)0¢ÂöFcà¢ÂöFcà¢ÂöFcà£Â÷6V7Föãà £ÂÒÒ)H)H)H)H)H)H)HdôõDU")H)H)H)H)H)H)HÒÓà£Æfö÷FW#à¢Çì*##bK¹nX©¾iÊÎyKrÂÆÂ&vG2&W6W'fVBãÂ÷à£Âöfö÷FW#à £ÂÒÒ)H)H)H)H)H)H)HtôôtÄR4TUE2DDdUD4)H)H)H)H)H)H)HÒÓà£Ç67&Cà¢ò¢)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y ¢)©ûò8>8>8´vöövÆR6VWG>8ä55bU$Î8).+Î8(®K¹88n8þ88^8@ ¢h¾c ¢âvöövÆR8+89~8:Î88>888+~8;Î888).h¾8ð¢"â89^8*8*N8:²(i"X[iÈ(i"8*n8*~89n8¾XZÎh°¢2â8Î8+~8;Î88XZKÙ>8Þ8Î8*¾8;>89îXË®X~8(®8îX
-NûÈæ77nûÈ8Þ8).h©à¢Bâ8ÎXZÎh¾8Þ89Î8+þ8;>8).h«Î8~8eU$Î8).8+>89N8;À¢RâK¾8å4TUEô55eõU$Î8¾+Î8(®K¹88(° ¢8+89~8:Î88>888+~8;Î888î88~8;Î8+þ[Ú.[ÈþûÈX~ûÉ®^yºî8.X~ûÉ®X
-NûÈ ¢¢Îhºy#¢cSC@¢#¢Xùn[É^iÉþi2##¢##Ró8	Ã##bó0¢3¢X¹Þxèr#3¢sãP¢C¢iÞy¸¢#C¢#3Bã#`¢S¢[>YØ~iÈX#S¢ã ¢c¢[>YØ~X#c¢"ã¢s¢[>YØ~iz^X#s¢ã0¢¢iÈ{X.i»Nik#¢##bó2ó#`¢)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y¢ð ¦6öç7B4TUEô55eõU$ÂÒvGG3¢òöFö72ævöövÆRæ6öÒ÷7&VG6VWG2öBöRó%5Óe¦å3%võ¤U$63TæÆfc5öóFµ5fGFcUöåuäöãwEµVF$¥õõÆçÄtã37u4d¦c2÷V#ö÷WGWCÖ77bs° ¢òò88~89^8*8:¾88X
-NûÈ8+89~8:Î88>888+~8;Î888ÎiÊ®ÞZé®8îZNY8¾KÛþyJûÈ¦6öç7BDTdTÅEõ5DE2Ò°¢~Îhºys¢scRÃCBrÀ¢~Xùn[É^iÉþi2s¢~(	BrÀ¢~X¹Þxèrs¢~(	BrÀ¢~iÞy¸¢s¢~(	BrÀ¢~[>YØ~iÈXs¢~(	BrÀ¢~[>YØ~Xs¢~(	BrÀ¢~[>YØ~iz^Xs¢~(	BrÀ¢~iÈ{X.i»Niks¢~(	Bp§Ó° ¢òòi[X
-N89^8*8;Î89î88>88¦gVæ7Föâf×DçVÒfÂ°¢6öç7BâÒ'6TfÆöBfÂ°¢b4æââ&WGW&âfÃ°¢&WGW&ââçFôÆö6ÆU7G&ærvVâÕU2rÂ²Öæ×VÔg&7FöäFvG3¢ÂÖ×VÔg&7FöäFvG3¢"Ò°§Ð ¢òò{[8).yK¾Ú.8¾XøÞi ¦gVæ7FöâÇ7FG2FF°¢6öç7BvWBÒ¶WÓâFF¶¶WÒÓÒVæFVfæVBòFF¶¶WÒ¢DTdTÅEõ5DE5¶¶WÒÇÂ~(	Br° ¢òòÎhºy¢6öç7BÖ&vâÒvWB~Îhºyr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FBÖÖ&vârçFWD6öçFVçBÒrBr²f×DçVÒÖ&vâ° ¢òòXùn[É^iÉþi0¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×G&FW2rçFWD6öçFVçBÒvWB~Xùn[É^iÉþi2rÇÂ~(	Bs° ¢òòX¹Þxèp¢6öç7Bw"ÒvWB~X¹Þxèrr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×vç&FRrçFWD6öçFVçBÒf×DçVÒw"²rRs° ¢òòiÞy¸ ¢6öç7BæÂÒ'6TfÆöBvWB~iÞy¸¢r°¢6öç7BæÄVÂÒFö7VÖVçBævWDVÆVÖVçD'Bw7FB×æÂr°¢b4æâæÂ°¢æÄVÂçFWD6öçFVçBÒæÂãÒòr²Br¢rÒBr²f×DçVÒÖFæ'2æÂ°¢æÄVÂæ6Æ74æÖRÒw7FB×fÇVRr²æÂãÒòw÷6FfRr¢væVvFfRr°¢ÒVÇ6R°¢æÄVÂçFWD6öçFVçBÒvWB~iÞy¸¢r°¢Ð ¢òò[>YØ~XY¹î8( ¢6öç7BÖöçFÇÒvWB~[>YØ~iÈXr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FBÖÖöçFÇrçFWD6öçFVçBÒr²r²f×DçVÒÖöçFÇ²rRs° ¢6öç7BvVV¶ÇÒvWB~[>YØ~Xr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×vVV¶ÇrçFWD6öçFVçBÒr²r²f×DçVÒvVV¶Ç²rRs° ¢6öç7BFÇÒvWB~[>YØ~iz^Xr°¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FBÖFÇrçFWD6öçFVçBÒr²r²f×DçVÒFÇ²rRs° ¢òòiÈ{X.i»Nik ¢Fö7VÖVçBævWDVÆVÖVçD'Bw7FB×WFFVBrçFWD6öçFVçBÒvWB~iÈ{X.i»Nikr°§Ð ¢òò55b8).z>ié8~8n8*Þ8;Ã®X
-N8î8*®89n8+8*~8*þ888¾ZHhù°¦gVæ7Föâ'6T55bFWB°¢6öç7BÆæW2ÒFWBçG&Òç7ÆBuÆâr°¢6öç7B&W7VÇBÒ·Ó°¢ÆæW2æf÷$V6ÆæRÓâ°¢6öç7B'G2ÒÆæRç7ÆBrÂr°¢b'G2æÆVæwFãÒ"°¢6öç7B¶WÒ'G5³ÒçG&Òç&WÆ6Rõâ'Â"BörÂrr°¢6öç7BfÂÒ'G2ç6Æ6Ræ¦öârÂrçG&Òç&WÆ6Rõâ'Â"BörÂrr°¢b¶W&W7VÇE¶¶WÒÒfÃ°¢Ð¢Ò°¢&WGW&â&W7VÇC°§Ð ¢òòvöövÆR6VWG28¾8(88~8;Î8+þXùn[ép¦7æ2gVæ7FöâÆöE6VWDFF°¢b4TUEô55eõU$Â°¢òòU$Î8ÎiÊ®ÞZé®8îZNY8þ88~89^8*8:¾88X
-N8).KÛþyJ¢Ç7FG2DTdTÅEõ5DE2°¢&WGW&ã°¢Ð ¢G'°¢6öç7B&W7ÒvBfWF64TUEô55eõU$Â°¢b&W7æö²F&÷ræWrW'&÷"tEEr²&W7ç7FGW2°¢6öç7BFWBÒvB&W7çFWB°¢6öç7BFFÒ'6T55bFWB°¢Ç7FG2FF°¢Ò6F6W'"°¢6öç6öÆRçv&â~8+89~8:Î88>888+~8;Î888îªÞ8þëÎ8þ8¾ZKiY~8~8î8~8ó¢rÂW'"°¢Ç7FG2DTdTÅEõ5DE2°¢Ð§Ð ¢òò89®8;Î8+8:Þ8;Î88i.8¾88~8;Î8+ùcå¹o¥ÂØYÚY]]J
-NÂÜØÜ\ØÙOÚ[
+              <strong>師匠との出会い</strong><br>
+              人脈を通じて、安定した成績を出し続けるプロトレーダーと出会う。
+              その圧倒的な実力と一貫した戦略に衝撃を受ける。
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>全力投資を決断</strong><br>
+              「他力の力を借りることこそ最短ルート」と確信。
+              <strong>借金800万円＋自己資金200万円（計1,000万円）</strong>を
+              師匠のコピートレードに投入する。
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>現在：全トレード公開中</strong><br>
+              師匠のトレードを忠実にコピーしながら、全ての実績をリアルタイムで公開。
+              同じ境遇の仲間と共に成長することを目指しています。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── VOICE ─────── -->
+<section class="voice-section" id="voice">
+  <div class="container">
+    <div class="section-label">Voice</div>
+    <p style="color:var(--muted2); margin-bottom:32px; font-size:14px;">フォロワーの方々からいただいた声をご紹介します。</p>
+    <div class="voice-grid" id="voiceGrid">
+      <!-- スクリーンショット画像を追加する場所 -->
+      <!-- 使い方: <img src="screenshot1.jpg"> タグを voice-card に入れてください -->
+      <div class="voice-card">
+        <div class="voice-placeholder">
+          <div class="voice-placeholder-icon">📸</div>
+          <div>スクリーンショットを<br>ここに追加</div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-placeholder">
+          <div class="voice-placeholder-icon">📸</div>
+          <div>スクリーンショットを<br>ここに追加</div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-placeholder">
+          <div class="voice-placeholder-icon">📸</div>
+          <div>スクリーンショットを<br>ここに追加</div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- ─────── BLOG ─────── -->
+<section class="blog-section" id="blog">
+  <div class="container">
+    <div class="section-label">Blog</div>
+    <div class="blog-list" id="blogList">
+      <!-- ブログ記事を追加する場所 -->
+      <!-- 使い方:
+      <a class="blog-item" href="記事のURL">
+        <div class="blog-date">2026/03/26</div>
+        <div class="blog-title">記事タイトル</div>
+        <div class="blog-arrow">→</div>
+      </a>
+      -->
+      <div class="blog-empty">
+        📝 ブログ記事を準備中です。随時更新していきます。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── CONTACT ─────── -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <div class="contact-inner">
+      <div class="contact-title">公式LINEへ</div>
+      <div class="contact-sub">
+        ご質問・お問い合わせはLINE公式アカウントまで。<br>
+        コピートレードに興味がある方もお気軽にどうぞ。
+      </div>
+      <a href="https://lin.ee/YLa9wip" target="_blank" class="line-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        公式LINEを追加する
+      </a>
+      <div style="margin-top:20px; font-size:12px; color:var(--muted);">
+        ※ 無理な勧誘は一切行いません
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── FOOTER ─────── -->
+<footer>
+  <p>© 2026 他力本願男 | All rights reserved.</p>
+</footer>
+
+<!-- ─────── GOOGLE SHEETS DATA FETCH ─────── -->
+<script>
+/* ══════════════════════════════════════════════════
+   ⚙️ ここにGoogle SheetsのCSV URLを貼り付けてください
+
+   手順:
+   1. Google スプレッドシートを開く
+   2. ファイル → 共有 → ウェブに公開
+   3. 「シート全体」「カンマ区切りの値（.csv）」を選択
+   4. 「公開」ボタンを押してURLをコピー
+   5. 下のSHEET_CSV_URLに貼り付ける
+
+   スプレッドシートのデータ形式（A列：項目、B列：値）:
+   A1: 証拠金       B1: 65144
+   A2: 取引期間     B2: 2025/01〜2026/03
+   A3: 勝率         B3: 78.5
+   A4: 損益         B4: 20394.26
+   A5: 平均月利     B5: 8.2
+   A6: 平均週利     B6: 2.1
+   A7: 平均日利     B7: 0.3
+   A8: 最終更新     B8: 2026/03/26
+   ══════════════════════════════════════════════════ */
+
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1znS8bWoZA1EPXBCc5NiLff3_o1tkSYFdy4f95YI_nWXnOhn7tQKUdhIBJ__XLnyLGN33wSIpfJf3/pub?output=csv';
+
+// デフォルト値（スプレッドシートが未設定の場合に使用）
+const DEFAULT_STATS = {
+  '証拠金':   '65,144',
+  '取引期間': '—',
+  '勝率':     '—',
+  '損益':     '—',
+  '平均月利': '—',
+  '平均週利': '—',
+  '平均日利': '—',
+  '最終更新': '—'
+};
+
+// 数値フォーマット
+function fmtNum(val) {
+  const n = parseFloat(val);
+  if (isNaN(n)) return val;
+  return n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+}
+
+// 統計を画面に反映
+function applyStats(data) {
+  const get = (key) => (data[key] !== undefined ? data[key] : DEFAULT_STATS[key] || '—');
+
+  // 証拠金
+  const margin = get('証拠金');
+  document.getElementById('stat-margin').textContent = '$' + fmtNum(margin);
+
+  // 取引期間
+  document.getElementById('stat-trades').textContent = get('取引期間') || '—';
+
+  // 勝率
+  const wr = get('勝率');
+  document.getElementById('stat-winrate').textContent = fmtNum(wr) + '%';
+
+  // 損益
+  const pnl = parseFloat(get('損益'));
+  const pnlEl = document.getElementById('stat-pnl');
+  if (!isNaN(pnl)) {
+    pnlEl.textContent = (pnl >= 0 ? '+$' : '-$') + fmtNum(Math.abs(pnl));
+    pnlEl.className = 'stat-value ' + (pnl >= 0 ? 'positive' : 'negative');
+  } else {
+    pnlEl.textContent = get('損益');
+  }
+
+  // 平均利回り
+  const monthly = get('平均月利');
+  document.getElementById('stat-monthly').textContent = '+' + fmtNum(monthly) + '%';
+
+  const weekly = get('平均週利');
+  document.getElementById('stat-weekly').textContent = '+' + fmtNum(weekly) + '%';
+
+  const daily = get('平均日利');
+  document.getElementById('stat-daily').textContent = '+' + fmtNum(daily) + '%';
+
+  // 最終更新
+  document.getElementById('stat-updated').textContent = get('最終更新');
+}
+
+// CSV を解析してキー:値のオブジェクトに変換
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const result = {};
+  lines.forEach(line => {
+    const parts = line.split(',');
+    if (parts.length >= 2) {
+      const key = parts[0].trim().replace(/^"|"$/g, '');
+      const val = parts.slice(1).join(',').trim().replace(/^"|"$/g, '');
+      if (key) result[key] = val;
+    }
+  });
+  return result;
+}
+
+// Google Sheets からデータ取得
+async function loadSheetData() {
+  if (!SHEET_CSV_URL) {
+    // URLが未設定の場合はデフォルト値を使用
+    applyStats(DEFAULT_STATS);
+    return;
+  }
+
+  try {
+    const resp = await fetch(SHEET_CSV_URL);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const text = await resp.text();
+    const data = parseCSV(text);
+    applyStats(data);
+  } catch (err) {
+    console.warn('スプレッドシートの読み込みに失敗しました:', err);
+    applyStats(DEFAULT_STATS);
+  }
+}
+
+// ページロード時にデータ取得
+loadSheetData();
+</script>
+
+</body>
+</html>
