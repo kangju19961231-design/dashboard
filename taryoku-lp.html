@@ -270,7 +270,8 @@
     .about-avatar img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      display: block;
     }
     .about-tag {
       font-size: 11px;
@@ -456,21 +457,69 @@
     }
 
     /* ── RESPONSIVE ── */
+    /* ── TABLET (≤768px) ── */
     @media (max-width: 768px) {
       nav { padding: 0 16px; }
-      .nav-links { gap: 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 12px; }
+
+      section { padding: 56px 0; }
+      .container { padding: 0 20px; }
+
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .avg-grid { grid-template-columns: repeat(3, 1fr); }
-      .about-inner { grid-template-columns: 1fr; }
-      .about-avatar { max-width: 200px; }
-      .blog-item { grid-template-columns: 1fr; gap: 8px; }
+      .avg-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { padding: 24px 18px; }
+      .stat-value { font-size: 26px; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 32px; }
+      .about-avatar { max-width: 220px; margin: 0 auto; }
+      .about-name { font-size: 26px; }
+
+      .blog-item { grid-template-columns: 1fr; gap: 6px; padding: 20px; }
       .blog-arrow { display: none; }
-      .hero-emphasis { font-size: 18px; }
+
+      .hero-emphasis { font-size: 18px; padding-left: 14px; }
+      .hero { padding: 80px 20px 60px; }
+
+      .line-btn { padding: 16px 40px; }
     }
+
+    /* ── MOBILE (≤480px) ── */
     @media (max-width: 480px) {
+      nav { height: 52px; }
+      .nav-logo { font-size: 15px; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 10px; letter-spacing: 0.2px; }
+
+      section { padding: 40px 0; }
+      .container { padding: 0 16px; }
+
       .stats-grid { grid-template-columns: 1fr 1fr; }
-      .avg-grid { grid-template-columns: 1fr; }
-      .stat-value { font-size: 24px; }
+      .avg-grid { grid-template-columns: 1fr 1fr; }
+      .stat-item { padding: 18px 12px; }
+      .stat-value { font-size: 20px; }
+      .stat-label { font-size: 9px; }
+      .stat-sub { font-size: 10px; }
+
+      .about-avatar { max-width: 180px; }
+      .about-name { font-size: 22px; margin-bottom: 14px; }
+      .about-bio { font-size: 14px; }
+      .timeline-text { font-size: 13px; }
+
+      .hero-emphasis { font-size: clamp(15px, 4vw, 18px); padding-left: 12px; border-left-width: 3px; }
+      .hero { padding: 72px 16px 56px; }
+
+      .voice-grid { grid-template-columns: 1fr; }
+
+      .blog-item { padding: 16px; }
+      .blog-title { font-size: 14px; }
+      .blog-date { font-size: 11px; }
+
+      .contact-title { font-size: 22px; }
+      .contact-sub { font-size: 14px; }
+      .line-btn { padding: 14px 28px; font-size: 14px; width: 100%; justify-content: center; box-sizing: border-box; }
+
+      .section-label { font-size: 10px; margin-bottom: 24px; }
     }
   </style>
 </head>
@@ -563,76 +612,7 @@
     <div class="about-inner">
       <div>
         <div class="about-avatar">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" style="display:block">
-            <rect width="500" height="500" fill="#000000"/>
-            <!-- 頭部アウトライン -->
-            <path d="
-              M 215,140
-              C 205,120 200,95 215,75
-              C 230,55 262,46 295,53
-              C 322,59 342,76 345,97
-              C 348,116 338,132 322,136
-              C 308,138 295,128 290,120
-              C 298,135 312,152 308,172
-              C 304,192 288,202 278,212
-              C 268,222 264,238 260,255
-              C 255,276 246,298 232,320
-              C 222,338 215,360 212,382
-              C 210,395 210,410 205,420
-              C 198,432 186,436 175,430
-              C 162,422 158,405 162,386
-              C 166,366 177,346 187,325
-              C 198,302 204,278 203,256
-              C 202,234 193,214 182,194
-              C 170,172 163,148 165,128
-              C 167,110 178,96 192,93
-              C 204,90 214,110 215,140 Z
-            " stroke="white" stroke-width="2.5" fill="none"
-              stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- ヘアライン(上部) -->
-            <path d="
-              M 215,140
-              C 208,120 208,98 220,80
-              C 232,62 258,52 285,55
-            " stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- 髪の流れ(右上) -->
-            <path d="
-              M 262,50
-              C 284,40 316,38 342,53
-              C 360,66 366,88 354,106
-              C 344,120 328,124 316,118
-            " stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- 右頬ライン -->
-            <path d="
-              M 322,136
-              C 336,150 344,170 337,190
-              C 330,206 314,213 304,220
-            " stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <!-- 目 -->
-            <path d="
-              M 276,192
-              C 286,184 302,184 310,192
-              C 302,202 286,202 276,192 Z
-            " stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <!-- 耳 -->
-            <path d="
-              M 166,230
-              C 153,236 147,252 150,267
-              C 153,280 165,285 177,280
-            " stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-            <!-- 上唇 -->
-            <path d="
-              M 193,365
-              C 200,358 212,355 222,358
-              C 232,361 237,368 232,376
-            " stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-            <!-- 下唇 -->
-            <path d="
-              M 193,365
-              C 197,374 210,380 222,379
-              C 232,377 237,371 232,376
-            " stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          </svg>
+          <img src="avatar.jpg" alt="他力本願男">
         </div>
       </div>
       <div>
