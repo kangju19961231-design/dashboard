@@ -148,8 +148,28 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      padding: 80px 24px 60px;
+      padding: 100px 24px 60px;
     }
+    .hero-avatar-wrap {
+      margin-bottom: 24px;
+    }
+    .hero-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      display: block;
+      margin: 0 auto;
+      background: #111;
+    }
+    .hero-catch {
+      font-size: clamp(14px, 2.2vw, 20px);
+      color: var(--muted2);
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+    .hero-catch strong { color: var(--gold); }
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -624,19 +644,15 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-tag">Copy Trade Evidence</div>
-    <div class="hero-name">他力本願男</div>
-    <div class="hero-quote">
-      "他力の力を借りるのが<br>
-      成功に近づく<strong>1番の最短ルート</strong>"
+    <div class="hero-avatar-wrap">
+      <img src="avatar.jpg" alt="他力本願男" class="hero-avatar">
     </div>
+    <div class="hero-name">他力本願男</div>
+    <div class="hero-catch">「自分で投資の勉強は諦めた」</div>
+    <div class="hero-catch">「身近な師匠の力を借りて成り上がります」</div>
     <div class="hero-emphasis">
       師匠のコピートレードで<br>資産を築く
     </div>
-  </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>SCROLL</span>
   </div>
 </section>
 
@@ -646,40 +662,25 @@
     <div class="stat-item">
       <div class="stat-label">💰 証拠金</div>
       <div class="stat-value" id="stat-margin">¥10,441,671</div>
-      <div class="stat-sub">JPY / Initial Balance</div>
     </div>
     <div class="stat-item">
       <div class="stat-label">📅 取引期間</div>
       <div class="stat-value" id="stat-trades"><span class="loading">読込中...</span></div>
-      <div class="stat-sub">Total Trades</div>
     </div>
     <div class="stat-item">
       <div class="stat-label">🎯 勝率</div>
       <div class="stat-value" id="stat-winrate"><span class="loading">読込中...</span></div>
-      <div class="stat-sub">Win Rate</div>
       <div style="font-size:11px;color:var(--muted);margin-top:4px;">勝ち <span style="color:#4fc88a;font-weight:700;">143</span> / 負け <span style="color:#e05a5a;font-weight:700;">71</span></div>
     </div>
     <div class="stat-item">
       <div class="stat-label">💵 損益（取引手数料含む）</div>
       <div class="stat-value positive" id="stat-pnl"><span class="loading">読込中...</span></div>
-      <div class="stat-sub">Total P&amp;L (JPY)</div>
     </div>
   </div>
-  <div class="avg-grid">
-    <div class="stat-item">
-      <div class="stat-label">📅 平均月利</div>
-      <div class="stat-value positive" id="stat-monthly"><span class="loading">読込中...</span></div>
-      <div class="stat-sub">Avg Monthly Return</div>
-    </div>
+  <div class="avg-grid" style="grid-template-columns: 1fr;">
     <div class="stat-item">
       <div class="stat-label">📆 平均週利</div>
       <div class="stat-value positive" id="stat-weekly"><span class="loading">読込中...</span></div>
-      <div class="stat-sub">Avg Weekly Return</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-label">🗓️ 平均日利</div>
-      <div class="stat-value positive" id="stat-daily"><span class="loading">読込中...</span></div>
-      <div class="stat-sub">Avg Daily Return</div>
     </div>
   </div>
   <div style="padding: 12px 28px; border-top: 1px solid var(--border); border-left: 1px solid var(--border);">
@@ -694,15 +695,15 @@
     <div class="section-label">Trade History</div>
     <div class="history-header">
       <div>
-        <h2 class="history-title">全取引履歴</h2>
-        <p class="history-sub">214件の取引 ｜ 2026/02/24〜2026/03/27</p>
+        <h2 class="history-title">最新の取引履歴</h2>
+        <p class="history-sub">直近5件 ｜ 全214件の取引は<a href="history.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);">こちらのページ</a>で確認</p>
       </div>
       <div class="history-badge-row">
         <span class="history-badge win">勝ち 143</span>
         <span class="history-badge loss">負け 71</span>
       </div>
     </div>
-    <div class="history-table-wrap">
+    <div class="history-table-wrap" style="max-height: none;">
       <table class="history-table" id="historyTable">
         <thead>
           <tr>
@@ -718,6 +719,9 @@
         <tbody id="historyBody"></tbody>
       </table>
     </div>
+    <div style="text-align:center; margin-top:24px;">
+      <a href="history.html" style="display:inline-block; padding:12px 36px; background:transparent; color:var(--gold); border:1px solid var(--gold); border-radius:4px; font-size:13px; letter-spacing:2px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='rgba(212,160,23,0.1)'" onmouseout="this.style.background='transparent'">全214件の取引履歴を見る →</a>
+    </div>
   </div>
 </section>
 
@@ -727,7 +731,8 @@
   const tbody = document.getElementById('historyBody');
   if (!tbody) return;
   let html = '';
-  TRADES.forEach(function(t) {
+  const latest5 = TRADES.slice(-5).reverse();
+  latest5.forEach(function(t) {
     const win = t.pl > 0;
     const plStr = (t.pl >= 0 ? '+' : '') + t.pl.toFixed(2);
     html += '<tr class="' + (win ? 'tr-win' : 'tr-loss') + '">' +
