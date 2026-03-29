@@ -170,6 +170,56 @@
       margin-top: 10px;
     }
     .hero-catch strong { color: var(--gold); }
+
+    /* Hero result callout */
+    .hero-result-wrap {
+      margin-top: 44px;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-result {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: rgba(212,160,23,0.07);
+      border: 1px solid rgba(212,160,23,0.35);
+      border-radius: 8px;
+      padding: 20px 48px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-result::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(212,160,23,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-result-lead {
+      font-size: clamp(13px, 1.8vw, 16px);
+      color: var(--muted2);
+      letter-spacing: 1px;
+    }
+    .hero-result-lead span { color: var(--gold2); font-weight: 800; font-size: 1.25em; }
+    .hero-result-amount {
+      font-size: clamp(34px, 6.5vw, 62px);
+      font-weight: 900;
+      color: #4fc88a;
+      line-height: 1;
+      letter-spacing: -1px;
+      text-shadow: 0 0 40px rgba(79,200,138,0.4);
+    }
+    .hero-result-tail {
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--muted2);
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    @media (max-width: 480px) {
+      .hero-result { padding: 14px 24px 12px; }
+    }
+
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -653,14 +703,77 @@
     <div class="hero-emphasis">
       師匠のコピートレードで<br>資産を築く
     </div>
+    <div class="hero-result-wrap">
+      <div class="hero-result">
+        <div class="hero-result-lead">開始 <span id="hero-days">33</span> 日で</div>
+        <div class="hero-result-amount">+¥4,731,997</div>
+        <div class="hero-result-tail">の利益を達成</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── ABOUT ─────── -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <div class="about-inner">
+      <div>
+        <div class="about-avatar">
+          <img src="avatar.jpg" alt="他力本願男">
+        </div>
+      </div>
+      <div>
+        <div class="about-tag">Copy Trader / 他力本願系投資家</div>
+        <div class="about-name">他力本願男</div>
+        <div class="about-bio">
+          自分でチャートを分析するより、<strong>圧倒的な実力を持つ師匠の力を借りる</strong>——
+          それが最速で資産を増やす方法だと確信しています。
+        </div>
+
+        <div class="story-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>裁量トレードで挫折</strong><br>
+              独学でFXに挑戦するも、感情に支配されたトレードを繰り返し大きな損失を経験。
+              「自分でやる」ことの限界を思い知る。
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>師匠との出会い</strong><br>
+              人脈を通じて、安定した成績を出し続けるプロトレーダーと出会う。
+              その圧倒的な実力と一貫した戦略に衝撃を受ける。
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>全力投資を決断</strong><br>
+              「他力の力を借りることこそ最短ルート」と確信。
+              <strong>借金800万円＋自己資金200万円（計1,000万円）</strong>を
+              師匠のコピートレードに投入する。
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-text">
+              <strong>現在：全トレード公開中</strong><br>
+              師匠のトレードを忠実にコピーしながら、全ての実績をリアルタイムで公開。
+              同じ境遇の仲間と共に成長することを目指しています。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ─────── TRADE SUMMARY DIVIDER ─────── -->
-<div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:18px 40px; display:flex; align-items:center; gap:16px;">
-  <div style="width:30px;height:1px;background:var(--gold);flex-shrink:0;"></div>
+<div style="background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:18px 40px;">
   <span style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;">Trade Summary</span>
-  <div style="flex:1;height:1px;background:var(--border);"></div>
 </div>
 
 <!-- ─────── STATS ─────── -->
@@ -769,64 +882,6 @@
   tbody.innerHTML = html;
 })();
 </script>
-
-<!-- ─────── ABOUT ─────── -->
-<section class="about-section" id="about">
-  <div class="container">
-    <div class="section-label">About</div>
-    <div class="about-inner">
-      <div>
-        <div class="about-avatar">
-          <img src="avatar.jpg" alt="他力本願男">
-        </div>
-      </div>
-      <div>
-        <div class="about-tag">Copy Trader / 他力本願系投資家</div>
-        <div class="about-name">他力本願男</div>
-        <div class="about-bio">
-          自分でチャートを分析するより、<strong>圧倒的な実力を持つ師匠の力を借りる</strong>——
-          それが最速で資産を増やす方法だと確信しています。
-        </div>
-
-        <div class="story-timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-text">
-              <strong>裁量トレードで挫折</strong><br>
-              独学でFXに挑戦するも、感情に支配されたトレードを繰り返し大きな損失を経験。
-              「自分でやる」ことの限界を思い知る。
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-text">
-              <strong>師匠との出会い</strong><br>
-              人脈を通じて、安定した成績を出し続けるプロトレーダーと出会う。
-              その圧倒的な実力と一貫した戦略に衝撃を受ける。
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-text">
-              <strong>全力投資を決断</strong><br>
-              「他力の力を借りることこそ最短ルート」と確信。
-              <strong>借金800万円＋自己資金200万円（計1,000万円）</strong>を
-              師匠のコピートレードに投入する。
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-text">
-              <strong>現在：全トレード公開中</strong><br>
-              師匠のトレードを忠実にコピーしながら、全ての実績をリアルタイムで公開。
-              同じ境遇の仲間と共に成長することを目指しています。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ─────── VOICE ─────── -->
 <section class="voice-section" id="voice">
@@ -957,13 +1012,15 @@ function applyStats(data) {
 
   // 証拠金 → 現在残高は固定表示（stat-marginは既にHTMLで設定済み）
 
-  // 取引期間 → 日数をJSで動的計算
+  // 取引期間 → 日数をJSで動的計算（hero・statsの両方に反映）
   (function() {
     const start = new Date('2026-02-24');
     const now = new Date();
     const days = Math.max(0, Math.floor((now - start) / 86400000));
-    const el = document.getElementById('stat-days');
-    if (el) el.textContent = days + '日';
+    const statEl = document.getElementById('stat-days');
+    if (statEl) statEl.textContent = days + '日';
+    const heroEl = document.getElementById('hero-days');
+    if (heroEl) heroEl.textContent = days;
   })();
 
   // 勝率
