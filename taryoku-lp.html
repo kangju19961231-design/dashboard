@@ -801,8 +801,8 @@
   </div>
   <div class="avg-grid" style="grid-template-columns: 1fr;">
     <div class="stat-item">
-      <div class="stat-label">📆 平均週利</div>
-      <div class="stat-value positive" id="stat-weekly"><span class="loading">読込中...</span></div>
+      <div class="stat-label">📅 平均月利</div>
+      <div class="stat-value positive" id="stat-monthly"><span class="loading">読込中...</span></div>
     </div>
   </div>
   <div style="padding: 12px 28px; border-top: 1px solid var(--border); border-left: 1px solid var(--border);">
@@ -1037,10 +1037,10 @@ function applyStats(data) {
     pnlEl.textContent = get('損益');
   }
 
-  // 平均週利
-  const weekly = get('平均週利');
-  const weeklyEl = document.getElementById('stat-weekly');
-  if (weeklyEl) weeklyEl.textContent = '+' + fmtNum(weekly) + '%';
+  // 平均月利
+  const monthly = get('平均月利');
+  const monthlyEl = document.getElementById('stat-monthly');
+  if (monthlyEl) monthlyEl.textContent = '+' + fmtNum(monthly) + '%';
 
   // 最終更新
   document.getElementById('stat-updated').textContent = get('最終更新');
